@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>程序员@Tokyo, Japan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="programmer, tokyo, japan, chinese, java, nodejs, ios, android">
+<meta property="og:type" content="website">
+<meta property="og:title" content="程序员@Tokyo, Japan">
+<meta property="og:url" content="http://blog.zhihuitian.com/index.html">
+<meta property="og:site_name" content="程序员@Tokyo, Japan">
+<meta property="og:description" content="programmer, tokyo, japan, chinese, java, nodejs, ios, android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程序员@Tokyo, Japan">
+<meta name="twitter:description" content="programmer, tokyo, japan, chinese, java, nodejs, ios, android">
+<meta name="twitter:creator" content="@densiki">
+<link rel="publisher" href="densiki@gmail.com">
+  
+    <link rel="alternate" href="/atom.xml" title="程序员@Tokyo, Japan" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="//mplus-fonts.sourceforge.jp/webfonts/general-j/mplus_webfonts.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-87500523-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">程序员@Tokyo, Japan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/ZhihuiTian/" title="GitHub"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhihuitian.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-set-crontab-for-raspberrypi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/23/set-crontab-for-raspberrypi/" class="article-date">
+  <time datetime="2016-11-22T17:03:33.000Z" itemprop="datePublished">2016-11-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/23/set-crontab-for-raspberrypi/">树莓派(Raspberry PI)的定时任务(Cron)设定</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于本身的IP地址会在路由器重新拨号后发生改变，所以我使用<a href="http://www.mydns.jp/" target="_blank" rel="external">MyDNS.JP</a>来做动态域名公开我的博客<a href="http://blog.zhihuitian.com"></a>。<br>本来以为树莓派的操作系统<a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="external">RASPBIAN</a>应该像其他Linux内核的操作系统一样简单配置下crontab就可以实现的，实际上我在配置的过程中却碰到了一些问题，接下来就把这些问题和解决方法给大家分享一下。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="1-添加cron任务，通知MyDNS-JP本机的最新IP地址"><a href="#1-添加cron任务，通知MyDNS-JP本机的最新IP地址" class="headerlink" title="1.添加cron任务，通知MyDNS.JP本机的最新IP地址"></a>1.添加cron任务，通知MyDNS.JP本机的最新IP地址</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pi@zhihuitian:~ $ crontab <span class="_">-e</span></div></pre></td></tr></table></figure>
+<p>将下面的内容加到最后<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DNS for zhihuitian.com</span></div><div class="line">* 8 * * * wget -q -O  /dev/null  http://mydnsXXXXXX:XXXXXXXXXXX@www.mydns.jp/login.html</div></pre></td></tr></table></figure></p>
+<p>其中mydnsXXXXXX为MyDNS.JP的登录用户名，接下来的XXXXXXXXXXX是登录时使用的密码。<br>听说频繁通知MyDNS.JP会导致本地IP地址被封锁，所以这次设定的是每天早晨8点自动执行。</p>
+<h3 id="2-然并卵，命令并没有被执行"><a href="#2-然并卵，命令并没有被执行" class="headerlink" title="2.然并卵，命令并没有被执行"></a>2.然并卵，命令并没有被执行</h3><p>第二天发现IP地址虽然变了，但是MyDNS.JP上的记录并没有被更新。<br>首先想到的是查看cron的日志文件<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pi@zhihuitian:~ $ cat /var/<span class="built_in">log</span>/cron.log</div><div class="line">cat: /var/<span class="built_in">log</span>/cron.log: 没有那个文件或目录</div></pre></td></tr></table></figure></p>
+<p>什么？！日志都没有。有没有搞错！</p>
+<h3 id="3-配置cron输出日志"><a href="#3-配置cron输出日志" class="headerlink" title="3.配置cron输出日志"></a>3.配置cron输出日志</h3><p>Google了一下，原来默认的系统<a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="external">RASPBIAN</a>中，cron的日志默认是没有开启的。<br>接下来让我们打开cron的日志。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pi@zhihuitian:~ $ sudo nano /etc/rsyslog.conf</div></pre></td></tr></table></figure></p>
+<p>将下面的这一行开头的#去掉。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#cron.*                          /var/log/cron.log</span></div></pre></td></tr></table></figure></p>
+<p>然后重新启动日志服务。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/rsyslog restart</div></pre></td></tr></table></figure></p>
+<p>为了调查crontab中配置的任务是否被执行过，我将crontab的配置改为每分钟执行一次。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DNS for zhihuitian.com</span></div><div class="line">*/1 * * * * wget -q -O /dev/null  http://mydnsXXXXXX:XXXXXXXXXXX@www.mydns.jp/login.html</div></pre></td></tr></table></figure></p>
+<p>确认下日志，发现有下面这样的日志出现，可以确定cronttab中设置的定时任务确实被执行了，<br>但是在MyDNS.JP的管理画面确认后发现最新的IP地址还是没有更新。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Nov 20 09:12:01 zhihuitian CRON[1156]: (pi) CMD (wget -q -O /dev/null http://mydnsXXXXXX:XXXXXXXXXXX@www.mydns.jp/login.html)</div><div class="line">Nov 20 09:12:01 zhihuitian CRON[1152]: (CRON) info (No MTA installed, discarding output)</div></pre></td></tr></table></figure></p>
+<h3 id="4-MTA又是什么东西？"><a href="#4-MTA又是什么东西？" class="headerlink" title="4.MTA又是什么东西？"></a>4.MTA又是什么东西？</h3><p>MTA，学名因特网邮件传送代理MTA(Mail Transfer Agent)，在Linux上，著名的MTA有sendmail，postfix等。<br>好吧，既然日志说我们的RASPBIAN中没有MTA，我们就先安装一个试一下吧。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pi@zhihuitian:~ $ sudo apt-get install postfix</div></pre></td></tr></table></figure></p>
+<h3 id="5-终于成功了"><a href="#5-终于成功了" class="headerlink" title="5.终于成功了"></a>5.终于成功了</h3><p>在安装了postfix，发现日志终于正常了，后面也不再有任何错误输出了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Nov 23 08:59:01 zhihuitian CRON[2809]: (pi) CMD (wget -q -O /dev/null http://mydnsXXXXXX:XXXXXXXXXXX@www.mydns.jp/login.html)</div></pre></td></tr></table></figure></p>
+<p>接下里来看一下MyDNS.JP的管理画面，发现上面的IP地址也变成了当前我正在使用的外网IP。<br>长出了一口气，终于成功了。。。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1.默认RASPBIAN中的cron日志是关闭的，需要查看日志的请将日志输出设定开启。<br>2.cron任务执行时需要使用到MTA(Mail Transfer Agent)，必须按照一种MTA服务。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>希望以上的内容能够对其他人有一些帮助。<br>也请大家多多关注，我会不定期的更新关于树莓派(Raspberry PI)相关的使用资料。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.zhihuitian.com/2016/11/23/set-crontab-for-raspberrypi/" data-id="civv3es8y00003otngdjsxj6e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Raspberry-PI/">Raspberry PI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hybrid-app-framework-selection" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/22/hybrid-app-framework-selection/" class="article-date">
+  <time datetime="2016-10-22T14:58:07.000Z" itemprop="datePublished">2016-10-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/22/hybrid-app-framework-selection/">谈谈Hybrid app(混合模式应用)框架选型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><hr>
+<p>用过的密码管理软件一个接一个的开始收费，还都是按月收费，弄得我这种永远记不住密码但又舍不得为自己的记忆力买单的人很是苦恼。所以我准备做一个简单、易用、真正永久免费的密码管理应用，算是造福自己捎带着给有同样烦恼的兄弟姐妹们一点福利。</p>
+<h2 id="苦恼"><a href="#苦恼" class="headerlink" title="苦恼"></a>苦恼</h2><hr>
+<p>经历过Java 1.4时代的我也算是个老程序员了，对Web前端和后端都不怵，但是对于最近几年火的一塌糊涂的手机端应用开发确是完全陌生的。之前也尝试着跟着教程做过几个例子，可是怎么也找不到写代码的那种酣畅淋漓的感觉，也就放弃深入学习了。所以接下来我把目光放到了Hybrid app(混合模式应用)上，这样既可以沿用做Web开发的经验，又可以调用原生API来获得网页应用无法做到的功能，还可以打包成App发布到应用商店。</p>
+<h2 id="调研"><a href="#调研" class="headerlink" title="调研"></a>调研</h2><hr>
+<p>基于简单的搜索结果，初步把目标定在了以下几种框架上。<br><a href="https://ionicframework.com/" target="_blank" rel="external">1.ionic</a><br><a href="https://www.meteor.com/" target="_blank" rel="external">2.meteor</a><br><a href="https://onsen.io/" target="_blank" rel="external">3.Onsenui</a><br><a href="https://www.nativescript.org" target="_blank" rel="external">4.NativeScript</a><br>虽然看起来有这么多选择，但是实际上除了NativeScript意外，其他的都是基于<a href="https://cordova.apache.org/" target="_blank" rel="external">Apache Cordova</a>的扩展。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.zhihuitian.com/2016/10/22/hybrid-app-framework-selection/" data-id="civv3es9500023otnj6cf38xe" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raspberry-PI/">Raspberry PI</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/23/set-crontab-for-raspberrypi/">树莓派(Raspberry PI)的定时任务(Cron)设定</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/22/hybrid-app-framework-selection/">谈谈Hybrid app(混合模式应用)框架选型</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Zhihui Tian<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
