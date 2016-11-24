@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>程序员@Tokyo, Japan</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.zhihuitian.com/"/>
+  <updated>2016-11-23T15:35:26.000Z</updated>
+  <id>http://blog.zhihuitian.com/</id>
+  
+  <author>
+    <name>Zhihui Tian</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>树莓派(Raspberry PI)的定时任务(Cron)设定</title>
+    <link href="http://blog.zhihuitian.com/2016/11/23/set-crontab-for-raspberrypi/"/>
+    <id>http://blog.zhihuitian.com/2016/11/23/set-crontab-for-raspberrypi/</id>
+    <published>2016-11-22T17:03:33.000Z</published>
+    <updated>2016-11-23T15:35:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于本身的IP地址会在路由器重新拨号后发生改变，所以我使用<a href="http://www.mydns.jp/" target="_blank" rel="external">MyDNS.JP</a>来做动态域名公开我的博客<a href="http://blog.zhihuitian.com"></a>。<br>本来以为树莓派的操作系统<a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="external">RASPBIAN</a>应该像其他Linux内核的操作系统一样简单配置下crontab就可以实现的，实际上我在配置的过程中却碰到了一些问题，接下来就把这些问题和解决方法给大家分享一下。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="1-添加cron任务，通知MyDNS-JP本机的最新IP地址"><a href="#1-添加cron任务，通知MyDNS-JP本机的最新IP地址" class="headerlink" title="1.添加cron任务，通知MyDNS.JP本机的最新IP地址"></a>1.添加cron任务，通知MyDNS.JP本机的最新IP地址</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pi@zhihuitian:~ $ crontab <span class="_">-e</span></div></pre></td></tr></table></figure>
+<p>将下面的内容加到最后<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DNS for zhihuitian.com</span></div><div class="line">* 8 * * * wget -q -O  /dev/null  http://mydnsXXXXXX:XXXXXXXXXXX@www.mydns.jp/login.html</div></pre></td></tr></table></figure></p>
+<p>其中mydnsXXXXXX为MyDNS.JP的登录用户名，接下来的XXXXXXXXXXX是登录时使用的密码。<br>听说频繁通知MyDNS.JP会导致本地IP地址被封锁，所以这次设定的是每天早晨8点自动执行。</p>
+<h3 id="2-然并卵，命令并没有被执行"><a href="#2-然并卵，命令并没有被执行" class="headerlink" title="2.然并卵，命令并没有被执行"></a>2.然并卵，命令并没有被执行</h3><p>第二天发现IP地址虽然变了，但是MyDNS.JP上的记录并没有被更新。<br>首先想到的是查看cron的日志文件<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pi@zhihuitian:~ $ cat /var/<span class="built_in">log</span>/cron.log</div><div class="line">cat: /var/<span class="built_in">log</span>/cron.log: 没有那个文件或目录</div></pre></td></tr></table></figure></p>
+<p>什么？！日志都没有。有没有搞错！</p>
+<h3 id="3-配置cron输出日志"><a href="#3-配置cron输出日志" class="headerlink" title="3.配置cron输出日志"></a>3.配置cron输出日志</h3><p>Google了一下，原来默认的系统<a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="external">RASPBIAN</a>中，cron的日志默认是没有开启的。<br>接下来让我们打开cron的日志。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pi@zhihuitian:~ $ sudo nano /etc/rsyslog.conf</div></pre></td></tr></table></figure></p>
+<p>将下面的这一行开头的#去掉。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#cron.*                          /var/log/cron.log</span></div></pre></td></tr></table></figure></p>
+<p>然后重新启动日志服务。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/rsyslog restart</div></pre></td></tr></table></figure></p>
+<p>为了调查crontab中配置的任务是否被执行过，我将crontab的配置改为每分钟执行一次。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DNS for zhihuitian.com</span></div><div class="line">*/1 * * * * wget -q -O /dev/null  http://mydnsXXXXXX:XXXXXXXXXXX@www.mydns.jp/login.html</div></pre></td></tr></table></figure></p>
+<p>确认下日志，发现有下面这样的日志出现，可以确定cronttab中设置的定时任务确实被执行了，<br>但是在MyDNS.JP的管理画面确认后发现最新的IP地址还是没有更新。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Nov 20 09:12:01 zhihuitian CRON[1156]: (pi) CMD (wget -q -O /dev/null http://mydnsXXXXXX:XXXXXXXXXXX@www.mydns.jp/login.html)</div><div class="line">Nov 20 09:12:01 zhihuitian CRON[1152]: (CRON) info (No MTA installed, discarding output)</div></pre></td></tr></table></figure></p>
+<h3 id="4-MTA又是什么东西？"><a href="#4-MTA又是什么东西？" class="headerlink" title="4.MTA又是什么东西？"></a>4.MTA又是什么东西？</h3><p>MTA，学名因特网邮件传送代理MTA(Mail Transfer Agent)，在Linux上，著名的MTA有sendmail，postfix等。<br>好吧，既然日志说我们的RASPBIAN中没有MTA，我们就先安装一个试一下吧。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pi@zhihuitian:~ $ sudo apt-get install postfix</div></pre></td></tr></table></figure></p>
+<h3 id="5-终于成功了"><a href="#5-终于成功了" class="headerlink" title="5.终于成功了"></a>5.终于成功了</h3><p>在安装了postfix，发现日志终于正常了，后面也不再有任何错误输出了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Nov 23 08:59:01 zhihuitian CRON[2809]: (pi) CMD (wget -q -O /dev/null http://mydnsXXXXXX:XXXXXXXXXXX@www.mydns.jp/login.html)</div></pre></td></tr></table></figure></p>
+<p>接下里来看一下MyDNS.JP的管理画面，发现上面的IP地址也变成了当前我正在使用的外网IP。<br>长出了一口气，终于成功了。。。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1.默认RASPBIAN中的cron日志是关闭的，需要查看日志的请将日志输出设定开启。<br>2.cron任务执行时需要使用到MTA(Mail Transfer Agent)，必须按照一种MTA服务。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>希望以上的内容能够对其他人有一些帮助。<br>也请大家多多关注，我会不定期的更新关于树莓派(Raspberry PI)相关的使用资料。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;由于本身的IP地址会在路由器重新拨号后发生改变，所以我使用&lt;a href=&quot;http://www.mydns.jp/&quot; target=&quot;_b
+    
+    </summary>
+    
+    
+      <category term="Raspberry PI" scheme="http://blog.zhihuitian.com/tags/Raspberry-PI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>谈谈Hybrid app(混合模式应用)框架选型</title>
+    <link href="http://blog.zhihuitian.com/2016/10/22/hybrid-app-framework-selection/"/>
+    <id>http://blog.zhihuitian.com/2016/10/22/hybrid-app-framework-selection/</id>
+    <published>2016-10-22T14:58:07.000Z</published>
+    <updated>2016-11-23T15:50:00.319Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><hr>
+<p>用过的密码管理软件一个接一个的开始收费，还都是按月收费，弄得我这种永远记不住密码但又舍不得为自己的记忆力买单的人很是苦恼。所以我准备做一个简单、易用、真正永久免费的密码管理应用，算是造福自己捎带着给有同样烦恼的兄弟姐妹们一点福利。</p>
+<h2 id="苦恼"><a href="#苦恼" class="headerlink" title="苦恼"></a>苦恼</h2><hr>
+<p>经历过Java 1.4时代的我也算是个老程序员了，对Web前端和后端都不怵，但是对于最近几年火的一塌糊涂的手机端应用开发确是完全陌生的。之前也尝试着跟着教程做过几个例子，可是怎么也找不到写代码的那种酣畅淋漓的感觉，也就放弃深入学习了。所以接下来我把目光放到了Hybrid app(混合模式应用)上，这样既可以沿用做Web开发的经验，又可以调用原生API来获得网页应用无法做到的功能，还可以打包成App发布到应用商店。</p>
+<h2 id="调研"><a href="#调研" class="headerlink" title="调研"></a>调研</h2><hr>
+<p>基于简单的搜索结果，初步把目标定在了以下几种框架上。<br><a href="https://ionicframework.com/" target="_blank" rel="external">1.ionic</a><br><a href="https://www.meteor.com/" target="_blank" rel="external">2.meteor</a><br><a href="https://onsen.io/" target="_blank" rel="external">3.Onsenui</a><br><a href="https://www.nativescript.org" target="_blank" rel="external">4.NativeScript</a><br>虽然看起来有这么多选择，但是实际上除了NativeScript意外，其他的都是基于<a href="https://cordova.apache.org/" target="_blank" rel="external">Apache Cordova</a>的扩展。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;hr&gt;
+&lt;p&gt;用过的密码管理软件一个接一个的开始收费，还都是按月收费，弄得我这种永远记不住密码但又舍不得为自己的记忆力买单的人很是苦恼。所以我准
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
