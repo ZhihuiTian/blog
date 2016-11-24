@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="程序员@Tokyo, Japan">
 <meta property="og:description" content="前言由于本身的IP地址会在路由器重新拨号后发生改变，所以我使用MyDNS.JP来做动态域名公开我的博客。本来以为树莓派的操作系统RASPBIAN应该像其他Linux内核的操作系统一样简单配置下crontab就可以实现的，实际上我在配置的过程中却碰到了一些问题，接下来就把这些问题和解决方法给大家分享一下。
 过程1.添加cron任务，通知MyDNS.JP本机的最新IP地址1pi@zhihuitian:">
-<meta property="og:updated_time" content="2016-11-23T15:35:26.000Z">
+<meta property="og:updated_time" content="2016-11-24T14:38:30.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="树莓派(Raspberry PI)的定时任务(Cron)设定">
 <meta name="twitter:description" content="前言由于本身的IP地址会在路由器重新拨号后发生改变，所以我使用MyDNS.JP来做动态域名公开我的博客。本来以为树莓派的操作系统RASPBIAN应该像其他Linux内核的操作系统一样简单配置下crontab就可以实现的，实际上我在配置的过程中却碰到了一些问题，接下来就把这些问题和解决方法给大家分享一下。
@@ -76,7 +76,7 @@ ga('send', 'pageview');
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
         
-          <a id="nav-github-link" class="nav-icon" href="https://github.com/ZhihuiTian2/" title="GitHub"></a>
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/ZhihuiTian/" title="GitHub"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
@@ -112,8 +112,8 @@ ga('send', 'pageview');
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于本身的IP地址会在路由器重新拨号后发生改变，所以我使用<a href="http://www.mydns.jp/" target="_blank" rel="external">MyDNS.JP</a>来做动态域名公开我的博客<a href="http://blog.zhihuitian.com"></a>。<br>本来以为树莓派的操作系统<a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="external">RASPBIAN</a>应该像其他Linux内核的操作系统一样简单配置下crontab就可以实现的，实际上我在配置的过程中却碰到了一些问题，接下来就把这些问题和解决方法给大家分享一下。</p>
 <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="1-添加cron任务，通知MyDNS-JP本机的最新IP地址"><a href="#1-添加cron任务，通知MyDNS-JP本机的最新IP地址" class="headerlink" title="1.添加cron任务，通知MyDNS.JP本机的最新IP地址"></a>1.添加cron任务，通知MyDNS.JP本机的最新IP地址</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pi@zhihuitian:~ $ crontab <span class="_">-e</span></div></pre></td></tr></table></figure>
-<p>将下面的内容加到最后<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DNS for zhihuitian.com</span></div><div class="line">* 8 * * * wget -q -O  /dev/null  http://mydnsXXXXXX:XXXXXXXXXXX@www.mydns.jp/login.html</div></pre></td></tr></table></figure></p>
-<p>其中mydnsXXXXXX为MyDNS.JP的登录用户名，接下来的XXXXXXXXXXX是登录时使用的密码。<br>听说频繁通知MyDNS.JP会导致本地IP地址被封锁，所以这次设定的是每天早晨8点自动执行。</p>
+<p>将下面的内容加到最后<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DNS for zhihuitian.com</span></div><div class="line">00 8 * * * wget -q -O  /dev/null  http://mydnsXXXXXX:XXXXXXXXXXX@www.mydns.jp/login.html</div></pre></td></tr></table></figure></p>
+<p>其中mydnsXXXXXX为MyDNS.JP的登录用户名，接下来的XXXXXXXXXXX是登录时使用的密码。<br>听说频繁通知MyDNS.JP会导致本地IP地址被封锁，所以这次设定的是每天早晨8点整自动执行。</p>
 <h3 id="2-然并卵，命令并没有被执行"><a href="#2-然并卵，命令并没有被执行" class="headerlink" title="2.然并卵，命令并没有被执行"></a>2.然并卵，命令并没有被执行</h3><p>第二天发现IP地址虽然变了，但是MyDNS.JP上的记录并没有被更新。<br>首先想到的是查看cron的日志文件<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pi@zhihuitian:~ $ cat /var/<span class="built_in">log</span>/cron.log</div><div class="line">cat: /var/<span class="built_in">log</span>/cron.log: 没有那个文件或目录</div></pre></td></tr></table></figure></p>
 <p>什么？！日志都没有。有没有搞错！</p>
 <h3 id="3-配置cron输出日志"><a href="#3-配置cron输出日志" class="headerlink" title="3.配置cron输出日志"></a>3.配置cron输出日志</h3><p>Google了一下，原来默认的系统<a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="external">RASPBIAN</a>中，cron的日志默认是没有开启的。<br>接下来让我们打开cron的日志。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pi@zhihuitian:~ $ sudo nano /etc/rsyslog.conf</div></pre></td></tr></table></figure></p>
@@ -130,8 +130,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zhihuitian.com/2016/11/23/set-crontab-for-raspberrypi/" data-id="civwdrecd00017stngnr3uung" class="article-share-link">Share</a>
-      tian-z-howard
+      <a data-url="http://blog.zhihuitian.com/2016/11/23/set-crontab-for-raspberrypi/" data-id="civwgwuqm0001ostn15pka29d" class="article-share-link">Share</a>
       
         <a href="http://blog.zhihuitian.com/2016/11/23/set-crontab-for-raspberrypi/#disqus_thread" class="article-comment-link">Comments</a>
       
