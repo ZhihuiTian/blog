@@ -3,21 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>树莓派(Raspberry PI)的定时任务(Cron)设定 | 程序员@Tokyo, Japan</title>
+  <title>树莓派(Raspberry PI)的定时任务(cron)设定 | 程序员@Tokyo, Japan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言由于本身的IP地址会在路由器重新拨号后发生改变，所以我使用MyDNS.JP来做动态域名公开我的博客。本来以为树莓派的操作系统RASPBIAN应该像其他Linux内核的操作系统一样简单配置下crontab就可以实现的，实际上我在配置的过程中却碰到了一些问题，接下来就把这些问题和解决方法给大家分享一下。
-过程1.添加cron任务，通知MyDNS.JP本机的最新IP地址1pi@zhihuitian:">
+  <meta name="description" content="使用通知MyDNS.JP更新动态IP地址为例，记录了如何在树莓派(Raspberry PI)中配置定时任务(cron)，同时介绍了打开cron日志的方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="树莓派(Raspberry PI)的定时任务(Cron)设定">
+<meta property="og:title" content="树莓派(Raspberry PI)的定时任务(cron)设定">
 <meta property="og:url" content="http://blog.zhihuitian.com/2016/11/23/set-crontab-for-raspberrypi/index.html">
 <meta property="og:site_name" content="程序员@Tokyo, Japan">
-<meta property="og:description" content="前言由于本身的IP地址会在路由器重新拨号后发生改变，所以我使用MyDNS.JP来做动态域名公开我的博客。本来以为树莓派的操作系统RASPBIAN应该像其他Linux内核的操作系统一样简单配置下crontab就可以实现的，实际上我在配置的过程中却碰到了一些问题，接下来就把这些问题和解决方法给大家分享一下。
-过程1.添加cron任务，通知MyDNS.JP本机的最新IP地址1pi@zhihuitian:">
-<meta property="og:updated_time" content="2016-11-24T14:38:30.431Z">
+<meta property="og:description" content="使用通知MyDNS.JP更新动态IP地址为例，记录了如何在树莓派(Raspberry PI)中配置定时任务(cron)，同时介绍了打开cron日志的方法。">
+<meta property="og:updated_time" content="2016-11-24T15:08:46.012Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="树莓派(Raspberry PI)的定时任务(Cron)设定">
-<meta name="twitter:description" content="前言由于本身的IP地址会在路由器重新拨号后发生改变，所以我使用MyDNS.JP来做动态域名公开我的博客。本来以为树莓派的操作系统RASPBIAN应该像其他Linux内核的操作系统一样简单配置下crontab就可以实现的，实际上我在配置的过程中却碰到了一些问题，接下来就把这些问题和解决方法给大家分享一下。
-过程1.添加cron任务，通知MyDNS.JP本机的最新IP地址1pi@zhihuitian:">
+<meta name="twitter:title" content="树莓派(Raspberry PI)的定时任务(cron)设定">
+<meta name="twitter:description" content="使用通知MyDNS.JP更新动态IP地址为例，记录了如何在树莓派(Raspberry PI)中配置定时任务(cron)，同时介绍了打开cron日志的方法。">
 <meta name="twitter:creator" content="@densiki">
 <link rel="publisher" href="tian.z.howard@gmail.com">
   
@@ -102,7 +99,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      树莓派(Raspberry PI)的定时任务(Cron)设定
+      树莓派(Raspberry PI)的定时任务(cron)设定
     </h1>
   
 
@@ -130,7 +127,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zhihuitian.com/2016/11/23/set-crontab-for-raspberrypi/" data-id="civwh2gnb0000ygtn2m32zp0u" class="article-share-link">Share</a>
+      <a data-url="http://blog.zhihuitian.com/2016/11/23/set-crontab-for-raspberrypi/" data-id="civwi46a900002ctnbiqqrmsp" class="article-share-link">Share</a>
       
         <a href="http://blog.zhihuitian.com/2016/11/23/set-crontab-for-raspberrypi/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -171,7 +168,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raspberry-PI/">Raspberry PI</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raspberry-PI/">Raspberry PI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ionic/">ionic</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -194,7 +191,7 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="/2016/11/23/set-crontab-for-raspberrypi/">树莓派(Raspberry PI)的定时任务(Cron)设定</a>
+            <a href="/2016/11/23/set-crontab-for-raspberrypi/">树莓派(Raspberry PI)的定时任务(cron)设定</a>
           </li>
         
           <li>

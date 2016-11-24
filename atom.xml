@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhihuitian.com/"/>
-  <updated>2016-11-24T14:38:30.431Z</updated>
+  <updated>2016-11-24T15:08:46.012Z</updated>
   <id>http://blog.zhihuitian.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>树莓派(Raspberry PI)的定时任务(Cron)设定</title>
+    <title>树莓派(Raspberry PI)的定时任务(cron)设定</title>
     <link href="http://blog.zhihuitian.com/2016/11/23/set-crontab-for-raspberrypi/"/>
     <id>http://blog.zhihuitian.com/2016/11/23/set-crontab-for-raspberrypi/</id>
     <published>2016-11-22T17:03:33.000Z</published>
-    <updated>2016-11-24T14:38:30.431Z</updated>
+    <updated>2016-11-24T15:08:46.012Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于本身的IP地址会在路由器重新拨号后发生改变，所以我使用<a href="http://www.mydns.jp/" target="_blank" rel="external">MyDNS.JP</a>来做动态域名公开我的博客<a href="http://blog.zhihuitian.com"></a>。<br>本来以为树莓派的操作系统<a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="external">RASPBIAN</a>应该像其他Linux内核的操作系统一样简单配置下crontab就可以实现的，实际上我在配置的过程中却碰到了一些问题，接下来就把这些问题和解决方法给大家分享一下。</p>
 <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="1-添加cron任务，通知MyDNS-JP本机的最新IP地址"><a href="#1-添加cron任务，通知MyDNS-JP本机的最新IP地址" class="headerlink" title="1.添加cron任务，通知MyDNS.JP本机的最新IP地址"></a>1.添加cron任务，通知MyDNS.JP本机的最新IP地址</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pi@zhihuitian:~ $ crontab <span class="_">-e</span></div></pre></td></tr></table></figure>
@@ -42,7 +42,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;由于本身的IP地址会在路由器重新拨号后发生改变，所以我使用&lt;a href=&quot;http://www.mydns.jp/&quot; target=&quot;_b
+      使用通知MyDNS.JP更新动态IP地址为例，记录了如何在树莓派(Raspberry PI)中配置定时任务(cron)，同时介绍了打开cron日志的方法。
     
     </summary>
     
@@ -56,7 +56,7 @@
     <link href="http://blog.zhihuitian.com/2016/10/22/hybrid-app-framework-selection/"/>
     <id>http://blog.zhihuitian.com/2016/10/22/hybrid-app-framework-selection/</id>
     <published>2016-10-22T14:58:07.000Z</published>
-    <updated>2016-11-23T15:50:00.319Z</updated>
+    <updated>2016-11-24T15:12:01.630Z</updated>
     
     <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><hr>
 <p>用过的密码管理软件一个接一个的开始收费，还都是按月收费，弄得我这种永远记不住密码但又舍不得为自己的记忆力买单的人很是苦恼。所以我准备做一个简单、易用、真正永久免费的密码管理应用，算是造福自己捎带着给有同样烦恼的兄弟姐妹们一点福利。</p>
@@ -68,11 +68,14 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;hr&gt;
-&lt;p&gt;用过的密码管理软件一个接一个的开始收费，还都是按月收费，弄得我这种永远记不住密码但又舍不得为自己的记忆力买单的人很是苦恼。所以我准
+      介绍了ionic， meteor， Onsenui， NativeScript等几种常见Hybrid app(混合模式应用)框架的特点，客观的分析了各自的优缺点，最终选择ionic作为本次密码管理软件的开发框架。希望能给大家带来一定的帮助。
     
     </summary>
     
+    
+      <category term="ionic" scheme="http://blog.zhihuitian.com/tags/ionic/"/>
+    
+      <category term="Cordova" scheme="http://blog.zhihuitian.com/tags/Cordova/"/>
     
   </entry>
   
