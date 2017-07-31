@@ -1,13 +1,4 @@
 User-agent: *
-Allow: /
-Allow: /archives/
-Allow: /categories/
-Allow: /about/
 
 Disallow: /hybrid-app-framework-selection/
-Disallow: /vendors/
-Disallow: /js/
-Disallow: /css/
-Disallow: /fonts/
-Disallow: /vendors/
-Disallow: /fancybox/
+Sitemap: http://blog.zhihuitian.com/sitemap.xml

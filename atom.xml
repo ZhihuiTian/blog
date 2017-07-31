@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhihuitian.com/"/>
-  <updated>2016-11-24T15:08:46.012Z</updated>
+  <updated>2017-07-23T12:50:58.497Z</updated>
   <id>http://blog.zhihuitian.com/</id>
   
   <author>
@@ -16,11 +16,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>日本短期签证延长（在留期間更新許可申請）过程@东京入国管理局</title>
+    <link href="http://blog.zhihuitian.com/japan-short-term-visa-update/"/>
+    <id>http://blog.zhihuitian.com/japan-short-term-visa-update/</id>
+    <published>2017-07-23T12:39:20.000Z</published>
+    <updated>2017-07-23T12:50:58.497Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/japan-short-term-visa-update/o0400030012409965321.jpg" alt="test"><br>我的父母为了迎接我漂亮的女儿出生，同时也是帮我们俩个新手父母带孩子，时隔2年又来到了日本。他们之前是在国内办理的短期探亲签证，在日本的最大滞留时间为90天。由于种种原因需要去延长他们的签证以便让他们在日本多待一段时间。所以我这个月选择了去给他们办理短期签证的更新手续，日语里是【在留期間更新許可申請】。为了方便有同样需要的同胞，我将我办理签证的过程和所需要的资料整理如下，希望能对大家有所帮助。</p>
+<h3 id="·日本短期签证延长（在留期間更新許可申請）所需资料"><a href="#·日本短期签证延长（在留期間更新許可申請）所需资料" class="headerlink" title="·日本短期签证延长（在留期間更新許可申請）所需资料"></a>·日本短期签证延长（在留期間更新許可申請）所需资料</h3><ol>
+<li>申请人护照（这里是我父母的护照）</li>
+<li>在留期間更新許可申請書（ 日本法务省下载链接）<br>注意是一个人一份</li>
+<li>身元保証書（日本法务省下载链接）</li>
+<li>申请理由书<br>这个是需要写详细一些的。比如父母来日本后的行程，将来签证申请下来后的行程，最重要的就是要写为什么要延长。当然写的越可怜越好。</li>
+<li>身元保証人的在留卡，在职证明，纳税证明（证明你可以支付在留期间的经费）<br>※申请人本人是可以不用到场的，完全可以子女代为办理。</li>
+</ol>
+<h3 id="·签证办理的全过程"><a href="#·签证办理的全过程" class="headerlink" title="·签证办理的全过程"></a>·签证办理的全过程</h3><p>到了东京入国管理局后直奔2楼，去B最左边的在留资格变更的窗口。<br>※不需要去跟普通的申请一样排队，直接过去窗口就可以办了。<br>将资料递交给工作人员，就是漫长的等待。我等了有半个小时左右。<br>工作人员告诉你签证已经批准，需要去买4000円的印纸。<br>去楼下的FamilyMart购买印纸。印纸柜台是在最右边。不用跟买其他东西的人一起排队。<br>工作人员收到贴好印纸的资料后，过几分钟就会把已经贴好新签证的护照给你了。</p>
+<h3 id="·总结"><a href="#·总结" class="headerlink" title="·总结"></a>·总结</h3><p>办理签证的整个过程还是比较容易的，而且新申请下的签证的有效期是从当前的在留期间的最后一天开始的，也就是整体的滞留时间最大为180天。所以小伙伴们不用非等到当前的在留时间快到期时再去办理，完全可以提前一个月左右去办理。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      日本短期签证, 在留期間更新許可申請, 东京入国管理局
+    
+    </summary>
+    
+    
+      <category term="life" scheme="http://blog.zhihuitian.com/tags/life/"/>
+    
+  </entry>
+  
+  <entry>
     <title>树莓派(Raspberry PI)的定时任务(cron)设定</title>
-    <link href="http://blog.zhihuitian.com/2016/11/23/set-crontab-for-raspberrypi/"/>
-    <id>http://blog.zhihuitian.com/2016/11/23/set-crontab-for-raspberrypi/</id>
+    <link href="http://blog.zhihuitian.com/set-crontab-for-raspberrypi/"/>
+    <id>http://blog.zhihuitian.com/set-crontab-for-raspberrypi/</id>
     <published>2016-11-22T17:03:33.000Z</published>
-    <updated>2016-11-24T15:08:46.012Z</updated>
+    <updated>2017-07-23T12:22:26.983Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于本身的IP地址会在路由器重新拨号后发生改变，所以我使用<a href="http://www.mydns.jp/" target="_blank" rel="external">MyDNS.JP</a>来做动态域名公开我的博客<a href="http://blog.zhihuitian.com"></a>。<br>本来以为树莓派的操作系统<a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="external">RASPBIAN</a>应该像其他Linux内核的操作系统一样简单配置下crontab就可以实现的，实际上我在配置的过程中却碰到了一些问题，接下来就把这些问题和解决方法给大家分享一下。</p>
 <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="1-添加cron任务，通知MyDNS-JP本机的最新IP地址"><a href="#1-添加cron任务，通知MyDNS-JP本机的最新IP地址" class="headerlink" title="1.添加cron任务，通知MyDNS.JP本机的最新IP地址"></a>1.添加cron任务，通知MyDNS.JP本机的最新IP地址</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pi@zhihuitian:~ $ crontab <span class="_">-e</span></div></pre></td></tr></table></figure>
@@ -53,10 +83,10 @@
   
   <entry>
     <title>谈谈Hybrid app(混合模式应用)框架选型</title>
-    <link href="http://blog.zhihuitian.com/2016/10/22/hybrid-app-framework-selection/"/>
-    <id>http://blog.zhihuitian.com/2016/10/22/hybrid-app-framework-selection/</id>
+    <link href="http://blog.zhihuitian.com/hybrid-app-framework-selection/"/>
+    <id>http://blog.zhihuitian.com/hybrid-app-framework-selection/</id>
     <published>2016-10-22T14:58:07.000Z</published>
-    <updated>2016-11-24T15:12:01.630Z</updated>
+    <updated>2017-07-23T12:22:26.971Z</updated>
     
     <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><hr>
 <p>用过的密码管理软件一个接一个的开始收费，还都是按月收费，弄得我这种永远记不住密码但又舍不得为自己的记忆力买单的人很是苦恼。所以我准备做一个简单、易用、真正永久免费的密码管理应用，算是造福自己捎带着给有同样烦恼的兄弟姐妹们一点福利。</p>
