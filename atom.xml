@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhihuitian.com/"/>
-  <updated>2017-07-23T12:50:58.497Z</updated>
+  <updated>2017-07-31T14:26:54.856Z</updated>
   <id>http://blog.zhihuitian.com/</id>
   
   <author>
@@ -16,13 +16,63 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【さくらVPS】服务器的搭建</title>
+    <link href="http://blog.zhihuitian.com/setup-sakura-vps/"/>
+    <id>http://blog.zhihuitian.com/setup-sakura-vps/</id>
+    <published>2017-07-31T14:18:47.000Z</published>
+    <updated>2017-07-31T14:26:54.856Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="0-选择-さくらVPS"><a href="#0-选择-さくらVPS" class="headerlink" title="0.选择[さくらVPS]"></a>0.选择[さくらVPS]</h2><p>为了验证某些不可告人的技术，空出来我的树莓派3来做一些尝试，所以我决定将在家搭建的博客等网站转移到较稳定的公网服务器上。<br>部署网站其实可选的候补还是有很多的，比如AWS EC2，VPS，共享服务器。虽然是老生常谈的话题，但是还是有必要再聊一聊这几种部署方式的选择，为一些朋友提供一些帮助。请参照这篇文章。</p>
+<h2 id="2-申请-さくらVPS"><a href="#2-申请-さくらVPS" class="headerlink" title="2.申请[さくらVPS]"></a>2.申请[さくらVPS]</h2><h2 id="3-服务器所需要的软件"><a href="#3-服务器所需要的软件" class="headerlink" title="3.服务器所需要的软件"></a>3.服务器所需要的软件</h2><ul>
+<li><strong>VIM - 编辑器</strong></li>
+<li><strong>Docker - 必不可少，有了它基本上其他都不需要了。再次感叹一下，有了Docker的世界真美好。</strong></li>
+<li><strong>Docker Compose - </strong></li>
+</ul>
+<h2 id="4-服务器的搭建过程"><a href="#4-服务器的搭建过程" class="headerlink" title="4.服务器的搭建过程"></a>4.服务器的搭建过程</h2><h3 id="4-1-更新"><a href="#4-1-更新" class="headerlink" title="4.1 更新"></a>4.1 更新</h3><p>第一步自然是更新软件数据库了。</p>
+<p><code>$ sudo apt-get update</code></p>
+<h3 id="4-2-安装vim"><a href="#4-2-安装vim" class="headerlink" title="4.2 安装vim"></a>4.2 安装vim</h3><p><code>$ sudo apt-get install vim</code></p>
+<h3 id="4-3-安装Docker-CE-社区版"><a href="#4-3-安装Docker-CE-社区版" class="headerlink" title="4.3 安装Docker CE - 社区版"></a>4.3 安装Docker CE - 社区版</h3><p>今年3月份随着Docker EE - 企业版的发布，原有的Docker分为了Docker EE和Docker CE，作为个人的我毫无疑问选择使用社区版。<br>官方版：Ubuntu下的Docker CE安装说明请参照 <a href="https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/" target="_blank" rel="external">https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/</a></p>
+<p>1.允许<code>apt</code>使用HTTPS协议的仓库。</p>
+<pre><code>$ sudo apt-get install \
+      apt-transport-https \`
+      ca-certificates \
+      curl \
+      software-properties-common`
+</code></pre><p>2.添加Docker官方的GPG key。  </p>
+<p><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</code>  </p>
+<p>3.添加Docker的仓库。  </p>
+<pre><code>$ sudo add-apt-repository \
+     &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+     $(lsb_release -cs) \
+     stable&quot;
+</code></pre><p>4.再次更新软件数据库。  </p>
+<p><code>$ sudo apt-get update</code></p>
+<p>5.重头戏来了，终于要安装Docker CE了。</p>
+<p><code>$ sudo apt-get install docker-ce</code></p>
+<p>6.验证一下安装是否成功</p>
+<p><code>$ sudo docker run hello-world</code></p>
+<p>如果看到输出<code>Hello from Docker!</code>了，恭喜你，你成功了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;0-选择-さくらVPS&quot;&gt;&lt;a href=&quot;#0-选择-さくらVPS&quot; class=&quot;headerlink&quot; title=&quot;0.选择[さくらVPS]&quot;&gt;&lt;/a&gt;0.选择[さくらVPS]&lt;/h2&gt;&lt;p&gt;为了验证某些不可告人的技术，空出来我的树莓派3来做一些尝试，所以
+    
+    </summary>
+    
+    
+      <category term="vps, 服务器, docker" scheme="http://blog.zhihuitian.com/tags/vps-%E6%9C%8D%E5%8A%A1%E5%99%A8-docker/"/>
+    
+  </entry>
+  
+  <entry>
     <title>日本短期签证延长（在留期間更新許可申請）过程@东京入国管理局</title>
     <link href="http://blog.zhihuitian.com/japan-short-term-visa-update/"/>
     <id>http://blog.zhihuitian.com/japan-short-term-visa-update/</id>
     <published>2017-07-23T12:39:20.000Z</published>
-    <updated>2017-07-23T12:50:58.497Z</updated>
+    <updated>2017-07-23T12:53:17.942Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/japan-short-term-visa-update/o0400030012409965321.jpg" alt="test"><br>我的父母为了迎接我漂亮的女儿出生，同时也是帮我们俩个新手父母带孩子，时隔2年又来到了日本。他们之前是在国内办理的短期探亲签证，在日本的最大滞留时间为90天。由于种种原因需要去延长他们的签证以便让他们在日本多待一段时间。所以我这个月选择了去给他们办理短期签证的更新手续，日语里是【在留期間更新許可申請】。为了方便有同样需要的同胞，我将我办理签证的过程和所需要的资料整理如下，希望能对大家有所帮助。</p>
+    <content type="html"><![CDATA[<p><img src="/japan-short-term-visa-update/o0400030012409965321.jpg" alt=""><br>我的父母为了迎接我漂亮的女儿出生，同时也是帮我们俩个新手父母带孩子，时隔2年又来到了日本。他们之前是在国内办理的短期探亲签证，在日本的最大滞留时间为90天。由于种种原因需要去延长他们的签证以便让他们在日本多待一段时间。所以我这个月选择了去给他们办理短期签证的更新手续，日语里是【在留期間更新許可申請】。为了方便有同样需要的同胞，我将我办理签证的过程和所需要的资料整理如下，希望能对大家有所帮助。</p>
 <h3 id="·日本短期签证延长（在留期間更新許可申請）所需资料"><a href="#·日本短期签证延长（在留期間更新許可申請）所需资料" class="headerlink" title="·日本短期签证延长（在留期間更新許可申請）所需资料"></a>·日本短期签证延长（在留期間更新許可申請）所需资料</h3><ol>
 <li>申请人护照（这里是我父母的护照）</li>
 <li>在留期間更新許可申請書（ 日本法务省下载链接）<br>注意是一个人一份</li>
