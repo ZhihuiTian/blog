@@ -3,20 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>【さくらVPS】服务器的搭建 | 程序员@Tokyo, Japan</title>
+  <title>日本高级人才申请过程@东京入国管理局 | 程序员@Tokyo, Japan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本篇文章未经允许请勿转载! 0.选择[さくらVPS]为了验证某些不可告人的技术，空出来我的树莓派3来做一些尝试，所以我决定将在家搭建的博客等网站转移到较稳定的公网服务器上。部署网站其实可选的候补还是有很多的，比如AWS EC2，VPS，共享服务器。虽然是老生常谈的话题，但是还是有必要再聊一聊这几种部署方式的选择，为一些朋友提供一些帮助。请参照这篇文章。 2.申请[さくらVPS]3.服务器所需要的软">
-<meta name="keywords" content="vps, 服务器, docker">
+  <meta name="description" content="高级人才, 日本签证， 东京入国管理局">
+<meta name="keywords" content="life">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【さくらVPS】服务器的搭建">
-<meta property="og:url" content="http://blog.zhihuitian.com/setup-sakura-vps/index.html">
+<meta property="og:title" content="日本高级人才申请过程@东京入国管理局">
+<meta property="og:url" content="http://blog.zhihuitian.com/highly-skilled-foreign-professional-visa-application/index.html">
 <meta property="og:site_name" content="程序员@Tokyo, Japan">
-<meta property="og:description" content="本篇文章未经允许请勿转载! 0.选择[さくらVPS]为了验证某些不可告人的技术，空出来我的树莓派3来做一些尝试，所以我决定将在家搭建的博客等网站转移到较稳定的公网服务器上。部署网站其实可选的候补还是有很多的，比如AWS EC2，VPS，共享服务器。虽然是老生常谈的话题，但是还是有必要再聊一聊这几种部署方式的选择，为一些朋友提供一些帮助。请参照这篇文章。 2.申请[さくらVPS]3.服务器所需要的软">
+<meta property="og:description" content="高级人才, 日本签证， 东京入国管理局">
 <meta property="og:locale" content="Chinese, Japanese">
-<meta property="og:updated_time" content="2017-08-01T13:21:29.873Z">
+<meta property="og:image" content="http://blog.zhihuitian.com/highly-skilled-foreign-professional-visa-application/highly-skilled-foreign-professional-visa-application.gif">
+<meta property="og:updated_time" content="2017-08-01T14:16:24.744Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【さくらVPS】服务器的搭建">
-<meta name="twitter:description" content="本篇文章未经允许请勿转载! 0.选择[さくらVPS]为了验证某些不可告人的技术，空出来我的树莓派3来做一些尝试，所以我决定将在家搭建的博客等网站转移到较稳定的公网服务器上。部署网站其实可选的候补还是有很多的，比如AWS EC2，VPS，共享服务器。虽然是老生常谈的话题，但是还是有必要再聊一聊这几种部署方式的选择，为一些朋友提供一些帮助。请参照这篇文章。 2.申请[さくらVPS]3.服务器所需要的软">
+<meta name="twitter:title" content="日本高级人才申请过程@东京入国管理局">
+<meta name="twitter:description" content="高级人才, 日本签证， 东京入国管理局">
+<meta name="twitter:image" content="http://blog.zhihuitian.com/highly-skilled-foreign-professional-visa-application/highly-skilled-foreign-professional-visa-application.gif">
 <meta name="twitter:creator" content="@densiki">
 <link rel="publisher" href="tian.z.howard@gmail.com">
   
@@ -101,10 +103,10 @@ var _hmt = _hmt || [];
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-setup-sakura-vps" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-highly-skilled-foreign-professional-visa-application" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/setup-sakura-vps/" class="article-date">
-  <time datetime="2017-07-31T14:18:47.000Z" itemprop="datePublished">2017-07-31</time>
+    <a href="/highly-skilled-foreign-professional-visa-application/" class="article-date">
+  <time datetime="2017-08-01T13:25:49.000Z" itemprop="datePublished">2017-08-01</time>
 </a>
     
   </div>
@@ -115,7 +117,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      【さくらVPS】服务器的搭建
+      日本高级人才申请过程@东京入国管理局
     </h1>
   
 
@@ -123,47 +125,22 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>本篇文章未经允许请勿转载!</strong></p>
-<h2 id="0-选择-さくらVPS"><a href="#0-选择-さくらVPS" class="headerlink" title="0.选择[さくらVPS]"></a>0.选择[さくらVPS]</h2><p>为了验证某些不可告人的技术，空出来我的树莓派3来做一些尝试，所以我决定将在家搭建的博客等网站转移到较稳定的公网服务器上。<br>部署网站其实可选的候补还是有很多的，比如AWS EC2，VPS，共享服务器。虽然是老生常谈的话题，但是还是有必要再聊一聊这几种部署方式的选择，为一些朋友提供一些帮助。请参照这篇文章。</p>
-<h2 id="2-申请-さくらVPS"><a href="#2-申请-さくらVPS" class="headerlink" title="2.申请[さくらVPS]"></a>2.申请[さくらVPS]</h2><h2 id="3-服务器所需要的软件"><a href="#3-服务器所需要的软件" class="headerlink" title="3.服务器所需要的软件"></a>3.服务器所需要的软件</h2><ul>
-<li><strong>VIM - 编辑器</strong></li>
-<li><strong>Docker - 必不可少，有了它基本上其他都不需要了。再次感叹一下，有了Docker的世界真美好。</strong></li>
-<li><strong>Docker Compose - </strong></li>
-</ul>
-<h2 id="4-服务器的搭建过程"><a href="#4-服务器的搭建过程" class="headerlink" title="4.服务器的搭建过程"></a>4.服务器的搭建过程</h2><h3 id="4-1-更新"><a href="#4-1-更新" class="headerlink" title="4.1 更新"></a>4.1 更新</h3><p>第一步自然是更新软件数据库了。</p>
-<p><code>$ sudo apt-get update</code></p>
-<h3 id="4-2-安装vim"><a href="#4-2-安装vim" class="headerlink" title="4.2 安装vim"></a>4.2 安装vim</h3><p><code>$ sudo apt-get install vim</code></p>
-<h3 id="4-3-安装Docker-CE-社区版"><a href="#4-3-安装Docker-CE-社区版" class="headerlink" title="4.3 安装Docker CE - 社区版"></a>4.3 安装Docker CE - 社区版</h3><p>今年3月份随着Docker EE - 企业版的发布，原有的Docker分为了Docker EE和Docker CE，作为个人的我毫无疑问选择使用社区版。<br>官方版：Ubuntu下的Docker CE安装说明请参照 <a href="https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/" target="_blank" rel="external">https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/</a></p>
-<p>1.允许<code>apt</code>使用HTTPS协议的仓库。</p>
-<pre><code>$ sudo apt-get install \
-      apt-transport-https \`
-      ca-certificates \
-      curl \
-      software-properties-common`
-</code></pre><p>2.添加Docker官方的GPG key。  </p>
-<p><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</code>  </p>
-<p>3.添加Docker的仓库。  </p>
-<pre><code>$ sudo add-apt-repository \
-     &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-     $(lsb_release -cs) \
-     stable&quot;
-</code></pre><p>4.再次更新软件数据库。  </p>
-<p><code>$ sudo apt-get update</code></p>
-<p>5.重头戏来了，终于要安装Docker CE了。</p>
-<p><code>$ sudo apt-get install docker-ce</code></p>
-<p>6.验证一下安装是否成功</p>
-<p><code>$ sudo docker run hello-world</code></p>
-<p>如果看到输出<code>Hello from Docker!</code>了，恭喜你，你成功了。</p>
+        <p><img src="/highly-skilled-foreign-professional-visa-application/highly-skilled-foreign-professional-visa-application.gif" alt=""></p>
+<p><strong>本篇文章未经允许请勿转载!</strong></p>
+<p>上一篇文章降到了怎么为短期签证过来的亲戚朋友办理短期更新手续。因为之前我是社内转勤的签证，所以大家和我的情况有可能不太一样，但是总体来说办理的手续应该是差不多的。这次来说一下今年我申请高级人才签证时的过程和碰到的一些问题吧。<br>重申一下我是在今年2月份着手办理的高级人才签证（高度専門・技術活動「高度専門職1号(ロ)」），请注意高级人才还有高度学術研究活動「高度専門職1号(イ)」和高度経営・管理活動「高度専門職1号(ハ)」,所需要的材料是不一样的，所以请大家不要弄混，以免发生不必要的麻烦。</p>
+<h3 id="·日本高度専門・技術活動「高度専門職1号-ロ-」（在留資格変更許可申請）所需资料"><a href="#·日本高度専門・技術活動「高度専門職1号-ロ-」（在留資格変更許可申請）所需资料" class="headerlink" title="·日本高度専門・技術活動「高度専門職1号(ロ)」（在留資格変更許可申請）所需资料"></a>·日本高度専門・技術活動「高度専門職1号(ロ)」（在留資格変更許可申請）所需资料</h3><p>1.分数计算表（<a href="http://www.immi-moj.go.jp/newimmiact_3/pdf/h29_0501_point_table.xls" target="_blank" rel="external">ポイント計算表</a>）<br>2.证明你能够获得这些分数的所有资料（这个接下来会详细介绍）<br>3.<a href="http://www.moj.go.jp/ONLINE/IMMIGRATION/16-2-1.html" target="_blank" rel="external">在留資格変更許可申請書</a></p>
+<h3 id="·分数计算表的填写和证明资料的准备"><a href="#·分数计算表的填写和证明资料的准备" class="headerlink" title="·分数计算表的填写和证明资料的准备"></a>·分数计算表的填写和证明资料的准备</h3><p>上面的资料看起来很简单吧？实际准备起来还是比较麻烦的。我将我准备资料时碰到的问题和需要着重注意的点罗列一下，给将来要申请这个签证的人提个醒。<br>1.学历证明<br>这个除了要有毕业证，学位证等原件的复印件外，还需要翻译成日文的版本。网上好多人说这个需要找专门的翻译公司什么的，其实根本没必要。中国大学的毕业证，学位证上面的内容都是一个模子刻出来的，直接Google一个例子照着抄就行，没必要花那份钱去找翻译公司。<br>2.年收<br>需要注意这里指的年收的解释是你作为高级人才一年能够获得多少收入的证明，而不是你现在一年可以拿多少钱的证明。所以这个资料可以是公司给你开的预计支付工资的证明（給料支払い見込み証明書）。结果就是你的奖金是无法预估的，也就有可能导致你最终的年收分数可能会变低。<br>3.在留資格変更許可申請書<br>就是这个申请书导致我去了两趟入国管理局，最终申请下来了也没闹明白真正问题出在哪里。所以大家去申请的时候最好按照我下面的简易补全资料再去申请，以免耽误时间。<br>高度専門職１号ロ是有两种不同格式的申请书的，请参考这个网站（<a href="http://www.moj.go.jp/ONLINE/IMMIGRATION/16-2-1.html" target="_blank" rel="external">在留資格変更許可申請書</a>）。<br>但是如果你像我一样是一个从事IT相关工作的人，最好是两种不同格式都准备一份。当时我和跟我同样情况的同事准备的一样的资料提交上去，只是因为审查官不一样，我的就因为填写的第二种格式而被拒绝了。另外一名同事的申请却正常受理的。当我第二次把两种格式都准备齐后提交上去后，审查官（当然跟上次的不是一个人）竟然跟我说你准备的太全了，素晴らしい。接下来说他也不知道应该用哪种格式，所以把我的两种申请书都留下来，告知我等通知了。<br>综上所述，各位同胞如果申请高级人才（高度専門職１号ロ）签证的时候，一定要准备两套资料。</p>
+<h3 id="·签证办理的全过程"><a href="#·签证办理的全过程" class="headerlink" title="·签证办理的全过程"></a>·签证办理的全过程</h3><p>到了东京入国管理局后直奔2楼，去办理就劳相关手续的C窗口。<br>※不需要去跟普通的申请一样排队，直接过去窗口拿个号，等叫到你的号就可以提交资料了。<br>递交资料后如果当时的简单审查通过他就会给你一个明信片，让你填写你的地址，到时候完全审查通过后就可以拿着这个明信片去领取你的签证了。<br>这次我申请的时候从递交资料到收到明信片大概过了一个月。<br>当你盼星星盼月亮终于等到明信片寄到家后就可以拿着明信片去入国管理局去换取签证了。同样是先去一楼的FamilyMart购买印纸，4000日元的。印纸柜台是在最右边，不用跟买其他东西的人一起排队。印纸和明信片递交给工作人员后，很快就会给你新的在留卡了。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zhihuitian.com/setup-sakura-vps/" data-id="cj5tnswfy0006egtndjwvugbh" class="article-share-link">Share</a>
+      <a data-url="http://blog.zhihuitian.com/highly-skilled-foreign-professional-visa-application/" data-id="cj5tnswfk0000egtnz92f3l6o" class="article-share-link">Share</a>
       
-        <a href="http://blog.zhihuitian.com/setup-sakura-vps/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://blog.zhihuitian.com/highly-skilled-foreign-professional-visa-application/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vps-服务器-docker/">vps, 服务器, docker</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/life/">life</a></li></ul>
 
     </footer>
   </div>
@@ -171,19 +148,10 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/highly-skilled-foreign-professional-visa-application/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          日本高级人才申请过程@东京入国管理局
-        
-      </div>
-    </a>
   
-  
-    <a href="/japan-short-term-visa-update/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/setup-sakura-vps/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">日本短期签证延长（在留期間更新許可申請）过程@东京入国管理局</div>
+      <div class="article-nav-title">【さくらVPS】服务器的搭建</div>
     </a>
   
 </nav>
@@ -285,7 +253,7 @@ var _hmt = _hmt || [];
      */
     /*
     var disqus_config = function () {
-        this.page.url = 'http://blog.zhihuitian.com/setup-sakura-vps/';
+        this.page.url = 'http://blog.zhihuitian.com/highly-skilled-foreign-professional-visa-application/';
         this.page.identifier = ':title/';
     };
     */
